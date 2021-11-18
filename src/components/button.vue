@@ -1,14 +1,23 @@
 <template>
   <button :class="[ 'ho-button', `ho-button-${type}`,
-    {'is-plain': plain, 'is-circle': circle, 'is-round':round}]">
-    <slot></slot>
+    {'is-plain': plain,
+    'is-circle': circle,
+    'is-round': round,
+    'is-disabled': disabled,
+    'has-icon-span': hasIcon}]"
+    :disabled="disabled"
+    @click="handleClick">
+    <i v-if="hasIcon" :class="['iconfont', `${icon}`]"></i>
+    <span v-if="$slots.default">
+      <slot></slot>
+    </span>
   </button>
 </template>
 
 <script>
 import {
   computed,
-  defineComponent, reactive, ref, toRefs
+  defineComponent, reactive, toRefs
 } from 'vue'
 
 export default defineComponent({
@@ -29,15 +38,26 @@ export default defineComponent({
     round: {
       type: Boolean,
       default: false
+    },
+    icon: {
+      type: String,
+      default: ''
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
-  setup() {
+  setup(props, context) {
+    // const { icon } = toRefs(props)
+    // 使用ES6解构赋值的话，必须使用toRefs包裹，才能是响应式
     const state = reactive({
-      content: 'test',
-      recontent: computed(() => `1111111${state.content}222222`)
-    });
-    const msg = ref('somemessage')
-    return { ...toRefs(state), msg }
+      hasIcon: computed(() => props.icon !== '')
+    })
+    const handleClick = (e) => {
+      context.emit('buttonClick', e)
+    }
+    return { ...toRefs(state), handleClick }
   }
 });
 </script>
@@ -73,7 +93,6 @@ export default defineComponent({
   background: transparent;
   border-color: #409eff;
 }
-
 .ho-button{
   display: inline-block;
   line-height: 1;
@@ -89,8 +108,8 @@ export default defineComponent({
   margin:0;
   transition: 0.1s;
   font-weight: 500;
-  padding: 12px 20px;
-  font-size: 14px;
+  padding: 12px 18px;
+  font-size: 15px;
   border-radius: 4px;
   /* 禁止元素文字被选中 */
   user-select: none;
@@ -107,7 +126,7 @@ export default defineComponent({
       .default-btn;
     }
   }
-  }
+}
 .ho-button-primary {
   .primary-btn;
   &:hover,
@@ -200,4 +219,15 @@ export default defineComponent({
 .is-round {
   border-radius: 20px;
 }
+.has-icon-span span {
+  margin-left: 5px
+}
+
+.is-disabled{
+  background: #EEEEEE !important;
+  border: 1px solid #EEEEEE !important;
+  color:#bebbbb !important;
+  cursor:not-allowed;
+}
+
 </style>

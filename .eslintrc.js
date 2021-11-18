@@ -18,6 +18,8 @@ module.exports = {
     'linebreak-style': ['off', 'windows'],
     semi: ['off'],
     'comma-dangle': [2, 'never'],
-    'comma-spacing': [2, { before: false, after: true }]
+    'comma-spacing': [2, { before: false, after: true }],
+    indent: ['error', 2],
+    'vue/comment-directive': 'off'
   }
 };

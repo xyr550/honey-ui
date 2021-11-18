@@ -68,12 +68,19 @@
       <ho-button disabled circle plain type="warning">的</ho-button>
       <ho-button disabled icon="ho-icon-edit" type="success">success</ho-button>
     </div>
+
+    <!-- dialog示例 -->
     <div style="margin-top:80px;">
       <span style="color:#4B0082; margin-right:20px">Dialog弹窗示例</span>
       <ho-button plain type="primary" @buttonClick="showDialog">点出弹窗
         <i :class="['iconfont', 'ho-icon-fabulous']"></i>
       </ho-button>
-      <ho-dialog></ho-dialog>
+
+      <ho-dialog title="传入一个标题">
+         <!-- <template v-slot:title>
+          <h3>传入一个标题</h3>
+        </template> 使用具名插槽可以直接替换掉dialog中的title -->
+      </ho-dialog>
     </div>
   </div>
 </template>

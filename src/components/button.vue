@@ -6,7 +6,7 @@
     'is-disabled': disabled,
     'has-icon-span': hasIcon}]"
     :disabled="disabled"
-    @click="handleClick">
+     @click="handleClick">
     <i v-if="hasIcon" :class="['iconfont', `${icon}`]"></i>
     <span v-if="$slots.default">
       <slot></slot>

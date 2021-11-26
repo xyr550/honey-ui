@@ -75,7 +75,7 @@
       <ho-button plain type="primary" @buttonClick="showDialog">点出弹窗
         <i :class="['iconfont', 'ho-icon-fabulous']"></i>
       </ho-button>
-      <div v-drag>
+      <div>
         <!-- 外层包裹<div>,div上加 v-drag 实现拖拽效果 -->
         <ho-dialog title="传入一个标题" width="40%" top="100px"
           :visible="visible"

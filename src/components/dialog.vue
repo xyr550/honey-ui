@@ -48,13 +48,75 @@ export default defineComponent({
     visible: {
       type: Boolean,
       default: false
+    },
+    dragable: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
-    const handleClose = (e) => {
-      context.emit('close', e)
+    // const state = reactive({
+    //   translateX: 0,
+    //   translateY: 0,
+    //   transitionDuration: '.2s'
+    // })
+    const handleClose = (event) => {
+      context.emit('close', event)
     }
-    return { handleClose }
+    // const onDragMove = (event) => {
+    //   if (!window.dragState) return
+
+    //   const { pageX: x, pageY: y } = event
+    //   const {
+    //     el, tx, ty, startX, startY
+    //   } = window.dragState
+    //   const { top, left } = getClientRect(el)
+    //   const newX = tx + x - startX
+    //   const newY = ty + y - startY
+    //   if (
+    //     (left > 0 || newX > window.translateX)
+    //       && (x < window.innerWidth)
+    //   ) {
+    //     window.translateX = newX
+    //   }
+    //   if (
+    //     (top > 0 || ty + y - startY > window.translateY)
+    //       && (y < window.innerHeight)
+    //   ) {
+    //     window.translateY = newY
+    //   }
+    // }
+    // const onDragEnd = () => {
+    //   if (!window.dragState) return
+
+    //   window.removeEventListener('mousemove', window.onDragMove)
+    //   window.removeEventListener('mouseup', window.onDragEnd)
+    //   window.transitionDuration = '.2s'
+
+    //   delay().then(() => {
+    //     delete window.dragState
+    //   })
+    // }
+    // const onDragStart = (event) => {
+    //   const { pageX, pageY } = event
+    //   const el = window.$el.querySelector('.ho-dialog')
+
+    //   if (!el || window.dragable === false) return
+
+    //   window.dragState = {
+    //     tx: window.translateX,
+    //     ty: window.translateY,
+    //     startX: pageX,
+    //     startY: pageY,
+    //     el: window.$el.querySelector('.ho-dialog')
+    //   }
+    //   window.transitionDuration = '0s'
+    //   window.addEventListener('mousemove', window.onDragMove)
+    //   window.addEventListener('mouseup', window.onDragEnd)
+    // }
+    return {
+      handleClose
+    }
   }
 });
 </script>

@@ -1,3 +1,7 @@
+// 使用方法 在main.js中
+// import drag from './config/drag'
+// app.use(drag) // 对dialog的拖拽
+
 // 使用app.directive()定义一个全局指令
 // 参数一：指令的名称，定义时指令前面不需要写v-
 // 参数二：是一个对象，该对象中有相关的操作函数

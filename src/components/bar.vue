@@ -1,13 +1,12 @@
 <template>
-  <div border-bottom
-    style="height:55px;overflow-y:hidden;float:left;" margin="top">
+  <div class="ho-bar">
     <div
-      v-for="item in selectedUnitWorkList"
-      :key="item.id"
+      v-for="item in records"
+      :key="`${index}+${item[contentFiled]}`"
       :class="item.id === activeUnitWork.id ?'table-item color-item': 'table-item'"
       cell-spacing
       :title="item.name.length > 10 ? item.name: null"
-      @click="activeUnitWork = item">
+      @click="cellClick(item)">
       {{ item.name }}
     </div>
   </div>
@@ -20,25 +19,38 @@ import {
 } from 'vue'
 
 export default defineComponent({
-  name: 'HoButton',
+  name: 'HoBar',
   props: {
-    type: {
+    records: {
+      type: Array,
+      default: null
+    },
+    contentFiled: {
       type: String,
-      default: 'default'
+      default: ''
     }
   },
-  setup() {
+  setup(props, context) {
     const state = reactive({
       content: 'test',
       recontent: computed(() => `1111111${state.content}222222`)
     });
     const msg = ref('somemessage')
-    return { ...toRefs(state), msg }
+    const cellClick = (item) => {
+      context.emit('cellClick', item)
+    }
+    return { ...toRefs(state), msg, cellClick }
   }
 });
 </script>
 
 <style>
+.ho-bar {
+  height: 55px;
+  overflow-y: hidden;
+  float: left;
+  border-bottom: 1px solid #F4F4F5;
+}
 .table-item {
   max-width: 100px;
   height: 35px;

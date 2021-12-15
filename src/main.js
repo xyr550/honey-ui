@@ -5,6 +5,7 @@ import './assets/fonts/iconfont.css'
 import HoButton from './components/button.vue'
 import HoDialog from './components/dialog.vue'
 import HoBar from './components/bar.vue'
+import HoInput from './components/input.vue'
 
 const app = createApp(App)
 
@@ -12,6 +13,7 @@ const app = createApp(App)
 app.component('HoButton', HoButton)
 app.component('HoDialog', HoDialog)
 app.component('HoBar', HoBar)
+app.component('HoInput', HoInput)
 // Vue.component(HoButton.name, HoButton)
 
 app.mount('#app')

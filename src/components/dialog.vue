@@ -1,8 +1,8 @@
 <template>
   <transition name="dialog">
-    <div class="ho-dialog_wapper" v-show="visible" @click.self="handleClose">
-      <div class="ho-dialog" :style="{width, top, height}">
-        <div class="ho-dialog_header">
+    <div class="ho-dialog_wapper" v-show="visible" @click.self="handleClose('header')">
+      <div class="ho-dialog" :style="{width, top:changeTop, height, left}">
+        <div class="ho-dialog_header" @dragstart="dragStart" @dragend="dragEnd">
           <slot name="title">
             <span class="ho-dialog_title">{{ title }}</span>
           </slot>
@@ -24,7 +24,9 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import {
+  defineComponent, toRefs, reactive
+} from 'vue'
 
 export default defineComponent({
   name: 'HoDialog',
@@ -52,70 +54,48 @@ export default defineComponent({
     dragable: {
       type: Boolean,
       default: false
+    },
+    maskAction: {
+      type: Boolean,
+      default: true
     }
   },
   setup(props, context) {
-    // const state = reactive({
-    //   translateX: 0,
-    //   translateY: 0,
-    //   transitionDuration: '.2s'
-    // })
+    const state = reactive({
+      diffX: 0,
+      diffY: 0,
+      changeTop: props.top,
+      left: undefined,
+      transitionDuration: '.2s'
+    })
     const handleClose = (event) => {
+      if (event === 'header' && !props.maskAction) return
       context.emit('close', event)
     }
-    // const onDragMove = (event) => {
-    //   if (!window.dragState) return
-
-    //   const { pageX: x, pageY: y } = event
-    //   const {
-    //     el, tx, ty, startX, startY
-    //   } = window.dragState
-    //   const { top, left } = getClientRect(el)
-    //   const newX = tx + x - startX
-    //   const newY = ty + y - startY
-    //   if (
-    //     (left > 0 || newX > window.translateX)
-    //       && (x < window.innerWidth)
-    //   ) {
-    //     window.translateX = newX
-    //   }
-    //   if (
-    //     (top > 0 || ty + y - startY > window.translateY)
-    //       && (y < window.innerHeight)
-    //   ) {
-    //     window.translateY = newY
-    //   }
-    // }
-    // const onDragEnd = () => {
-    //   if (!window.dragState) return
-
-    //   window.removeEventListener('mousemove', window.onDragMove)
-    //   window.removeEventListener('mouseup', window.onDragEnd)
-    //   window.transitionDuration = '.2s'
-
-    //   delay().then(() => {
-    //     delete window.dragState
-    //   })
-    // }
-    // const onDragStart = (event) => {
-    //   const { pageX, pageY } = event
-    //   const el = window.$el.querySelector('.ho-dialog')
-
-    //   if (!el || window.dragable === false) return
-
-    //   window.dragState = {
-    //     tx: window.translateX,
-    //     ty: window.translateY,
-    //     startX: pageX,
-    //     startY: pageY,
-    //     el: window.$el.querySelector('.ho-dialog')
-    //   }
-    //   window.transitionDuration = '0s'
-    //   window.addEventListener('mousemove', window.onDragMove)
-    //   window.addEventListener('mouseup', window.onDragEnd)
-    // }
+    const dragEnd = () => {
+      // console.log(2)
+      // document.ondragover = () => {
+      //   e.dataTransfer.dropEffect = 'none'
+      // }
+      // // 获取元素落点位置 鼠标位置-相对于拖拽元素的位置
+      // state.changeTop = e.pageY - state.diffY
+      // state.left = e.pageX - state.diffX
+    }
+    const dragStart = () => {
+      // console.log(1)
+      // document.ondragover = () => {
+      //   e.preventDefault()
+      //   e.dataTransfer.dropEffect = 'move'
+      // }
+      // // 获取鼠标相对于拖拽元素的位置
+      // state.diffX = e.layerX
+      // state.diffY = e.layerY
+    }
     return {
-      handleClose
+      handleClose,
+      dragStart,
+      dragEnd,
+      ...toRefs(state)
     }
   }
 });
@@ -174,6 +154,9 @@ export default defineComponent({
     padding: 10px 20px 20px;
     text-align: right;
     box-sizing: border-box;
+    :deep .ho-button:not(:first-child) {
+      margin-left: 16px !important;
+    }
   }
 }
 .dialog-enter-active {

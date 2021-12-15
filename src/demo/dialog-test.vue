@@ -6,7 +6,8 @@
       <i :class="['iconfont', 'ho-icon-smile']"></i>
     </ho-button>
     <!-- 外层包裹<div>,div上加 v-drag 实现拖拽效果 -->
-    <ho-dialog title="我是标题哦！" width="30%" top="100px"
+    <ho-dialog title="我是标题哦！" width="30%" top="300px"
+      :mask-action="false"
       :visible="visible"
       @close="visible = false">
       <!-- <template v-slot:title><h3>标题</h3></template> 使用具名插槽可以直接替换掉dialog中的title -->
@@ -19,7 +20,7 @@
         <input />
       </div>
       <template v-slot:footer>
-        <div class="set-margin">
+        <div>
           <ho-button type="primary">submit</ho-button>
           <ho-button @buttonClick="visible = false">cancel</ho-button>
         </div>
@@ -61,8 +62,5 @@ export default {
     border: 1px solid rgb(134, 49, 49);
     margin-left:26%;
   }
-}
-.set-margin .ho-button:not(:first-child) {
-  margin-left: 16px !important;
 }
 </style>

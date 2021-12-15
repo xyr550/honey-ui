@@ -1,12 +1,10 @@
 <template>
   <div class="ho-bar">
     <div
-      v-for="item in records"
-      :key="`${index}+${item[contentFiled]}`"
-      :class="item.id === activeUnitWork.id ?'table-item color-item': 'table-item'"
-      cell-spacing
-      :title="item.name.length > 10 ? item.name: null"
-      @click="cellClick(item)">
+      v-for="(item, index) in records"
+      :key="`${index}`"
+      :class="item.id === activeItem.id ?'table-item color-item': 'table-item'"
+      @click="cellClick(item, index)">
       {{ item.name }}
     </div>
   </div>
@@ -14,8 +12,7 @@
 
 <script>
 import {
-  computed,
-  defineComponent, reactive, ref, toRefs
+  defineComponent, toRefs
 } from 'vue'
 
 export default defineComponent({
@@ -31,15 +28,11 @@ export default defineComponent({
     }
   },
   setup(props, context) {
-    const state = reactive({
-      content: 'test',
-      recontent: computed(() => `1111111${state.content}222222`)
-    });
-    const msg = ref('somemessage')
+    const activeItem = props.records.length ? toRefs(props.records[0]) : { id: null }
     const cellClick = (item) => {
-      context.emit('cellClick', item)
+      context.emit('cellclick', item)
     }
-    return { ...toRefs(state), msg, cellClick }
+    return { activeItem, cellClick }
   }
 });
 </script>

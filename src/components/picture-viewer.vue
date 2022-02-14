@@ -22,6 +22,7 @@
       </i>
     </div>
   </div>
+ </div>
 </template>
 
 <script>

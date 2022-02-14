@@ -25,7 +25,7 @@
 
 <script>
 import {
-  defineComponent, toRefs, reactive, ref, onMounted
+  defineComponent, toRefs, reactive, ref
 } from 'vue'
 
 export default defineComponent({

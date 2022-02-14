@@ -5,12 +5,15 @@
     </span>
     <div class="box">
       <ho-input
-        placeholder="请输入用户名" />
+        placeholder="请输入用户名"
+        clearable />
       <ho-input
         placeholder="测试name是否锁定username"
         name="username" />
-      <ho-input type="password"
-        placeholder="请输入密码" />
+      <ho-input
+        type="password"
+        placeholder="请输入密码"
+        show-password />
     </div>
     <div class="box">
       <ho-input disabled

@@ -1,11 +1,11 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2944016 */
-  src: url('iconfont.eot?t=1637129703540'); /* IE9 */
-  src: url('iconfont.eot?t=1637129703540#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('iconfont.woff2?t=1637129703540') format('woff2'),
-       url('iconfont.woff?t=1637129703540') format('woff'),
-       url('iconfont.ttf?t=1637129703540') format('truetype'),
-       url('iconfont.svg?t=1637129703540#iconfont') format('svg');
+  src: url('iconfont.eot?t=1644834264953'); /* IE9 */
+  src: url('iconfont.eot?t=1644834264953#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('iconfont.woff2?t=1644834264953') format('woff2'),
+       url('iconfont.woff?t=1644834264953') format('woff'),
+       url('iconfont.ttf?t=1644834264953') format('truetype'),
+       url('iconfont.svg?t=1644834264953#iconfont') format('svg');
 }
 
 .iconfont {
@@ -14,6 +14,22 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.ho-icon-eye:before {
+  content: "\e806";
+}
+
+.ho-icon-zoomout1:before {
+  content: "\e6d9";
+}
+
+.ho-icon-zoomin1:before {
+  content: "\e6da";
+}
+
+.ho-icon-zoomin1-copy:before {
+  content: "\e71e";
 }
 
 .ho-icon-arrow-double-right:before {

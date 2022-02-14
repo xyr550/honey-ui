@@ -1,8 +1,8 @@
 <template>
   <transition name="dialog">
     <div class="ho-dialog_wapper" v-show="visible" @click.self="handleClose('header')">
-      <div class="ho-dialog" :style="{width, top:changeTop, height, left}">
-        <div class="ho-dialog_header" @dragstart="dragStart" @dragend="dragEnd">
+      <div class="ho-dialog" :style="{width, top:changeTop, height, left}" ref="diaRef">
+        <div class="ho-dialog_header" @mousedown="dragStart">
           <slot name="title">
             <span class="ho-dialog_title">{{ title }}</span>
           </slot>
@@ -25,7 +25,7 @@
 
 <script>
 import {
-  defineComponent, toRefs, reactive
+  defineComponent, toRefs, reactive, ref, onMounted
 } from 'vue'
 
 export default defineComponent({
@@ -61,41 +61,65 @@ export default defineComponent({
     }
   },
   setup(props, context) {
+    const diaRef = ref(null)
     const state = reactive({
-      diffX: 0,
-      diffY: 0,
+      startx: 0,
+      starty: 0,
       changeTop: props.top,
       left: undefined,
-      transitionDuration: '.2s'
+      transitionDuration: '.2s',
+      draggable: false
     })
     const handleClose = (event) => {
       if (event === 'header' && !props.maskAction) return
       context.emit('close', event)
     }
-    const dragEnd = () => {
-      // console.log(2)
-      // document.ondragover = () => {
-      //   e.dataTransfer.dropEffect = 'none'
-      // }
-      // // 获取元素落点位置 鼠标位置-相对于拖拽元素的位置
-      // state.changeTop = e.pageY - state.diffY
-      // state.left = e.pageX - state.diffX
+    const move = (e) => {
+      // console.log(diaRef.value.offsetLeft)
+      // console.log(diaRef.value.offsetTop)
+      e.preventDefault()
+      if (state.draggable) {
+        const diffx = e.clientX - state.startx
+        const diffy = e.clientY - state.starty
+        console.log('diffx', diffx)
+        console.log('diffy', diffy)
+        console.log('left', Number(diaRef.value.style.left))
+        console.log('top', Number(diaRef.value.style.top))
+        const left = Number(diaRef.value.style.left) + diffx
+        const top = Number(diaRef.value.style.top) + diffy
+        console.log('leftnow', left)
+        console.log('topnow', top)
+        state.left = `${left}px`
+        state.changeTop = `${top}px`
+        console.log('state.left', state.left)
+        console.log('state.changeTop', state.changeTop)
+        state.startx = e.clientX
+        state.starty = e.clientY
+      }
     }
-    const dragStart = () => {
-      // console.log(1)
-      // document.ondragover = () => {
-      //   e.preventDefault()
-      //   e.dataTransfer.dropEffect = 'move'
-      // }
-      // // 获取鼠标相对于拖拽元素的位置
-      // state.diffX = e.layerX
-      // state.diffY = e.layerY
+    const dragEnd = () => {
+      state.draggable = false
+      document.removeEventListener('mousemove', move)
+      document.addEventListener('mouseup', dragEnd)
+    }
+    const dragStart = (e) => {
+      // 鼠标左键点击
+      if (e.button === 0) {
+        // 记录鼠标指针位置
+        state.startx = e.clientX
+        state.starty = e.clientY
+        state.draggable = true
+      }
+      document.addEventListener('mousemove', move)
+      document.addEventListener('mouseup', dragEnd)
     }
     return {
       handleClose,
       dragStart,
       dragEnd,
-      ...toRefs(state)
+      move,
+      ...toRefs(state),
+      diaRef
     }
   }
 });

@@ -5,12 +5,17 @@
     </span>
     <div class="box">
       <ho-input
+        v-model="userName"
         placeholder="请输入用户名"
         clearable />
       <ho-input
+        v-model="testName"
         placeholder="测试name是否锁定username"
-        name="username" />
+        name="username"
+        clearable
+        @clear="clear" />
       <ho-input
+        v-model="password"
         type="password"
         placeholder="请输入密码"
         show-password />
@@ -24,10 +29,21 @@
 
 <script>
 import {
+  reactive, toRefs
 } from 'vue'
 
 export default {
   setup() {
+    const state = reactive({
+      userName: 'cc',
+      testName: '',
+      password: 'oo'
+    })
+    const clear = () => {
+      // state.userName = ''
+      console.log(1)
+    }
+    return { ...toRefs(state), clear }
   }
 };
 </script>

@@ -2,13 +2,19 @@
   <div class="ho-input ho-input-suffix">
     <input
       class="ho-input_inner"
-      :type="type"
+      :type="passwordVisible ? 'text' : type"
       :placeholder="placeholder"
       :name="name"
-      :disabled="disabled">
+      :value ="modelValue"
+      :disabled="disabled"
+      @input = "handleInput">
     <span class="ho-input_suffix" v-show="hasIcon">
-      <i v-if="showPassword" :class="['iconfont', `${eyeIcon}`]" @click="changeEyeIcon" />
-      <i v-if="clearable" class="iconfont ho-icon-error" />
+      <i v-if="showPassword && modelValue"
+        :class="['iconfont', `${eyeIcon}`]"
+        @click="changeEyeIcon" />
+      <i v-if="clearable && modelValue"
+        class="iconfont ho-icon-error"
+         @click="clear" />
     </span>
   </div>
 </template>
@@ -44,16 +50,34 @@ export default defineComponent({
     showPassword: {
       type: Boolean,
       default: false
+    },
+    modelValue: {
+      type: String,
+      default: ''
     }
   },
-  setup(props) {
+  setup(props, context) {
     const change = ref(true)
+    const passwordVisible = ref(false)
     const hasIcon = computed(() => props.clearable || props.showPassword)
-    const eyeIcon = computed(() => (change.value ? 'ho-icon-eye-close' : 'ho-icon-eye'))
+    const eyeIcon = computed(() => (change.value ? 'ho-icon-eye' : 'ho-icon-eye-close'))
+
     const changeEyeIcon = () => {
       change.value = !change.value
+      passwordVisible.value = !passwordVisible.value
     }
-    return { hasIcon, eyeIcon, changeEyeIcon }
+    const clear = () => {
+      context.emit('update:modelValue', '')
+      context.emit('clear', '')
+    }
+    // vue3 中 v-modle 语法糖变为 (modelValue   @update:modelValue)
+    const handleInput = (e) => {
+      context.emit('update:modelValue', e.target.value)
+    }
+
+    return {
+      hasIcon, passwordVisible, eyeIcon, changeEyeIcon, clear, handleInput
+    }
   }
 });
 </script>

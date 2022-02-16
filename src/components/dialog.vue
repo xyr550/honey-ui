@@ -2,7 +2,7 @@
   <transition name="dialog">
     <div class="ho-dialog_wapper" v-show="visible" @click.self="handleClose('header')">
       <div class="ho-dialog" :style="{width, top:changeTop, height, left}" ref="diaRef">
-        <div class="ho-dialog_header" @mousedown="dragStart">
+        <div class="ho-dialog_header">
           <slot name="title">
             <span class="ho-dialog_title">{{ title }}</span>
           </slot>

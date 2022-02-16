@@ -81,18 +81,10 @@ export default defineComponent({
       if (state.draggable) {
         const diffx = e.clientX - state.startx
         const diffy = e.clientY - state.starty
-        console.log('diffx', diffx)
-        console.log('diffy', diffy)
-        console.log('left', Number(diaRef.value.style.left))
-        console.log('top', Number(diaRef.value.style.top))
         const left = Number(diaRef.value.style.left) + diffx
         const top = Number(diaRef.value.style.top) + diffy
-        console.log('leftnow', left)
-        console.log('topnow', top)
         state.left = `${left}px`
         state.changeTop = `${top}px`
-        console.log('state.left', state.left)
-        console.log('state.changeTop', state.changeTop)
         state.startx = e.clientX
         state.starty = e.clientY
       }

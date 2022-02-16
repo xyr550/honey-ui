@@ -1,7 +1,7 @@
 <template>
   <div class="ho-input ho-input-suffix">
     <input
-      class="ho-input_inner"
+      :class="['ho-input_inner', {'is-disabled': disabled}]"
       :type="passwordVisible ? 'text' : type"
       :placeholder="placeholder"
       :name="name"
@@ -104,7 +104,7 @@ export default defineComponent({
     padding: 0 15px;
     transition: border-color .2s cubic-bezier(.645,.045,.355,1);
     width: 100%;
-    &:focus{
+    &:focus {
       outline: none;
       border-color: #409eff;
     }
@@ -134,5 +134,11 @@ export default defineComponent({
 }
 input[type="password"]::-ms-reveal{
     display:none;
+}
+.is-disabled{
+  background: #EEEEEE !important;
+  border: 1px solid #EEEEEE !important;
+  color:#bebbbb !important;
+  cursor:not-allowed;
 }
 </style>

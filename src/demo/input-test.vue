@@ -11,9 +11,7 @@
       <ho-input
         v-model="testName"
         placeholder="测试name是否锁定username"
-        name="username"
-        clearable
-        @clear="clear" />
+        name="username" />
       <ho-input
         v-model="password"
         type="password"
@@ -21,8 +19,13 @@
         show-password />
     </div>
     <div class="box">
+      <ho-input
+        v-model="c"
+        placeholder="测试子组件抛出的clear事件"
+        clearable
+        @clear="clear"/>
       <ho-input disabled
-        placeholder="请输入" />
+        placeholder="测试禁用" />
     </div>
   </div>
 </template>
@@ -37,7 +40,8 @@ export default {
     const state = reactive({
       userName: 'cc',
       testName: '',
-      password: 'oo'
+      password: 'oo',
+      c: ''
     })
     const clear = () => {
       // state.userName = ''

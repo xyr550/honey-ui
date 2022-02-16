@@ -7,7 +7,7 @@ export default function delay(ms = 20) {
       else resolve()
     }, ms)
   })
-  p.stop = function () {
+  p.stop = () => {
     canceled = true
   }
   return p

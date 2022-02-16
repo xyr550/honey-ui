@@ -3,6 +3,7 @@
     <button-test />
     <dialog-test />
     <input-test />
+    <switch-test />
   </div>
 </template>
 
@@ -10,12 +11,13 @@
 import ButtonTest from './demo/button-test.vue'
 import DialogTest from './demo/dialog-test.vue'
 import InputTest from './demo/input-test.vue'
+import SwitchTest from './demo/switch-test.vue'
 // import PictureTest from './demo/picture-test.vue';
 
 export default {
   name: 'App',
   components: {
-    ButtonTest, DialogTest, InputTest
+    ButtonTest, DialogTest, InputTest, SwitchTest
   },
   setup() {
   }

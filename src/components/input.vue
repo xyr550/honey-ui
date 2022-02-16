@@ -99,7 +99,7 @@ export default defineComponent({
     display: inline-block;
     font-size: inherit;
     height: 40px;
-    line-height: 40px;
+    line-height: 38px;
     outline: none;
     padding: 0 15px;
     transition: border-color .2s cubic-bezier(.645,.045,.355,1);
@@ -139,5 +139,8 @@ input[type="password"]::-ms-reveal{
   border: 1px solid #EEEEEE !important;
   color:#bebbbb !important;
   cursor:not-allowed;
+}
+input::-webkit-input-placeholder { /* WebKit browsers */
+  color: #9b9898;
 }
 </style>

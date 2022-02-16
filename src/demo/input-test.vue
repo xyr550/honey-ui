@@ -45,7 +45,7 @@ export default {
     })
     const clear = () => {
       // state.userName = ''
-      console.log(1)
+      state.testName = '1111111111111111'
     }
     return { ...toRefs(state), clear }
   }

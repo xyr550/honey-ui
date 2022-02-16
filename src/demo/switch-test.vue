@@ -10,6 +10,7 @@
       active-color="red"
       un-active-color="#f0b331" />
     <ho-switch
+      name="userName"
       v-model="active3"
       active-color="#40c26b"/>
   </div>
@@ -17,15 +18,20 @@
 
 <script>
 import {
-  ref
+  reactive, toRefs
 } from 'vue'
 
 export default {
   setup() {
-    const active = ref(false)
-    const active2 = ref(true)
-    const active3 = ref(true)
-    return { active, active2, active3 }
+    const state = reactive({
+      active: false,
+      active2: true,
+      active3: true,
+      userName: 'zs'
+    })
+    return {
+      ...toRefs(state)
+    }
   }
 };
 </script>

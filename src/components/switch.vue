@@ -1,10 +1,18 @@
 <template>
-  <label :class="['ho-switch', {'is-checked': modelValue}]"
+  <!-- 此处不用label了，改为div，否则加上input就点不到span上面了 -->
+  <div :class="['ho-switch', {'is-checked': modelValue}]"
     @click="handleClick">
     <span class="ho-switch_core" ref="coreRef">
       <span class="ho-switch_btn"></span>
     </span>
-  </label>
+    <input
+      class="ho-switch_ckeckbox"
+      :name="name"
+      type="checkbox"
+      ref="input"
+      :checked="modelValue"
+    />
+  </div>
 </template>
 
 <script>
@@ -31,6 +39,10 @@ export default defineComponent({
       default: ''
     },
     unActiveColor: {
+      type: String,
+      default: ''
+    },
+    name: {
       type: String,
       default: ''
     }
@@ -101,6 +113,13 @@ export default defineComponent({
       height: 16px;
       background: #fff;
     }
+    // .ho-switch_ckeckbox{
+    //    position: absolute;
+    //    margin: 0;
+    //    width: 0;
+    //    height: 0;
+    //    opacity: 0;
+    // }
 }
 // 选中样式
 .is-checked {

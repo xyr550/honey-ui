@@ -121,11 +121,10 @@ export default defineComponent({
     top: 0;
     line-height: 40px;
     text-align: center;
-    color: #c0c4cc;
     transition: all .3s;
     z-index: 900;
     i {
-      color: #c0c4cc;
+      color: #606266;
       font-size: 16px;
       cursor: pointer;
       transition: color .2s cubic-bezier(.645,.045,.355,1);

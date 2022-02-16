@@ -113,13 +113,13 @@ export default defineComponent({
       height: 16px;
       background: #fff;
     }
-    // .ho-switch_ckeckbox{
-    //    position: absolute;
-    //    margin: 0;
-    //    width: 0;
-    //    height: 0;
-    //    opacity: 0;
-    // }
+    .ho-switch_ckeckbox{
+       position: absolute;
+       margin: 0;
+       width: 0;
+       height: 0;
+       opacity: 0;
+    }
 }
 // 选中样式
 .is-checked {

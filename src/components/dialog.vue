@@ -1,7 +1,8 @@
 <template>
   <transition name="dialog">
     <div class="ho-dialog_wapper" v-show="visible" @click.self="handleClose('header')">
-      <div class="ho-dialog" :style="{width, top:changeTop, height, left}" ref="diaRef">
+      <div class="ho-dialog" :style="{width, top:changeTop, height, left}" ref="diaRef"
+        @mousedown="dragStart">
         <div class="ho-dialog_header">
           <slot name="title">
             <span class="ho-dialog_title">{{ title }}</span>
@@ -66,7 +67,7 @@ export default defineComponent({
       startx: 0,
       starty: 0,
       changeTop: props.top,
-      left: undefined,
+      left: '0px',
       transitionDuration: '.2s',
       draggable: false
     })
@@ -75,14 +76,18 @@ export default defineComponent({
       context.emit('close', event)
     }
     const move = (e) => {
-      // console.log(diaRef.value.offsetLeft)
-      // console.log(diaRef.value.offsetTop)
       e.preventDefault()
       if (state.draggable) {
         const diffx = e.clientX - state.startx
         const diffy = e.clientY - state.starty
-        const left = Number(diaRef.value.style.left) + diffx
-        const top = Number(diaRef.value.style.top) + diffy
+        // 1px 100px  去掉px
+        const leftBef = diaRef.value.style.left
+        const leftBefNum = leftBef.substring(0, leftBef.length - 2)
+        const topBef = diaRef.value.style.top
+        const topBefNum = topBef.substring(0, topBef.length - 2)
+
+        const left = Number(leftBefNum) + diffx
+        const top = Number(topBefNum) + diffy
         state.left = `${left}px`
         state.changeTop = `${top}px`
         state.startx = e.clientX
@@ -95,15 +100,18 @@ export default defineComponent({
       document.addEventListener('mouseup', dragEnd)
     }
     const dragStart = (e) => {
+      // props中允许拖拽方可执行
+      if (props.dragable) {
       // 鼠标左键点击
-      if (e.button === 0) {
+        if (e.button === 0) {
         // 记录鼠标指针位置
-        state.startx = e.clientX
-        state.starty = e.clientY
-        state.draggable = true
+          state.draggable = true
+          state.startx = e.clientX
+          state.starty = e.clientY
+        }
+        document.addEventListener('mousemove', move)
+        document.addEventListener('mouseup', dragEnd)
       }
-      document.addEventListener('mousemove', move)
-      document.addEventListener('mouseup', dragEnd)
     }
     return {
       handleClose,

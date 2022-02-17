@@ -77,7 +77,8 @@
       </ho-button>
       <div>
         <!-- 外层包裹<div>,div上加 v-drag 实现拖拽效果 -->
-        <ho-dialog title="传入一个标题" width="40%" top="100px"
+        <ho-dialog title="传入一个标题" width="40%"
+          dragable
           :visible="visible"
           @close="visible = false">
           <!-- <template v-slot:title><h3>标题</h3></template> 使用具名插槽可以直接替换掉dialog中的title -->

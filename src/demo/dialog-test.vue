@@ -6,7 +6,7 @@
       <i :class="['iconfont', 'ho-icon-smile']"></i>
     </ho-button>
     <!-- 外层包裹<div>,div上加 v-drag 实现拖拽效果 -->
-    <ho-dialog title="我是标题哦！" width="30%" top="300px"
+    <ho-dialog title="我是标题哦！" width="30%" top="200px"
       :mask-action="false"
       :visible="visible"
       @close="visible = false">

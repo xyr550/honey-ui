@@ -97,7 +97,7 @@ export default defineComponent({
     const dragEnd = () => {
       state.draggable = false
       document.removeEventListener('mousemove', move)
-      document.addEventListener('mouseup', dragEnd)
+      document.removeEventListener('mouseup', dragEnd)
     }
     const dragStart = (e) => {
       // props中允许拖拽方可执行

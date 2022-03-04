@@ -96,7 +96,7 @@ export default {
       document.addEventListener('mousemove', this.move)
       document.addEventListener('mouseup', this.stopDrag)
     },
-    stopDrag(e) {
+    stopDrag() {
       this.draggable = false
       document.removeEventListener('mousemove', this.move)
       document.addEventListener('mouseup', this.stopDrag)
@@ -117,7 +117,9 @@ export default {
         this.starty = e.clientY
       }
     },
-    judjeImgOut(diffx, diffy) {
+    judjeImgOut(difx, dify) {
+      let diffx = difx
+      let diffy = dify
       const imgBoxRef = this.$refs.imgBox.getBoundingClientRect()
       const picRef = this.$refs.picture.getBoundingClientRect()
       if ((diffx < 0 && picRef.left + diffx + picRef.width < imgBoxRef.left + 40)

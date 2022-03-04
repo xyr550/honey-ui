@@ -8,6 +8,7 @@ import HoBar from './components/bar.vue'
 import HoInput from './components/input.vue'
 import HoSwitch from './components/switch.vue'
 import HoRadio from './components/radio.vue'
+import HoRadioGroup from './components/radio-group.vue'
 import pictureViewer from './components/picture-viewer.vue'
 
 const app = createApp(App)
@@ -19,6 +20,7 @@ app.component('HoBar', HoBar)
 app.component('HoInput', HoInput)
 app.component('HoSwitch', HoSwitch)
 app.component('HoRadio', HoRadio)
+app.component('HoRadioGroup', HoRadioGroup)
 app.component('pictureViewer', pictureViewer)
 // Vue.component(HoButton.name, HoButton)
 

@@ -1,5 +1,5 @@
 <template>
-  <label :class="['ho-radio', {'is-checked': modelValue === label}]">
+  <label :class="['ho-radio', {'is-checked': model === label}]">
     <span class="ho-radio_input">
       <span class="ho-radio_inner"></span>
       <input
@@ -20,7 +20,7 @@
 
 <script>
 import {
-  defineComponent, computed
+  defineComponent, computed, inject
 } from 'vue'
 
 export default defineComponent({
@@ -37,13 +37,20 @@ export default defineComponent({
     }
   },
   setup(props, context) {
+    const groupModel = inject('groupModel', '')
+    const groupContext = inject('groupContext', '')
+    // 判断是否被ho-radio-group包裹在内层
+    const isGroup = computed(() => !!groupContext)
     // vue3中计算属性的函数中如果传入一个对象，表示的是get和set
     const model = computed({
       get() {
-        return props.modelValue
+        return isGroup.value ? groupModel.value : props.modelValue
       },
       set(val) {
-        context.emit('update:modelValue', val)
+        if (isGroup.value) {
+          groupModel.value = val
+          groupContext.emit('update:modelValue', val)
+        } else context.emit('update:modelValue', val)
       }
     })
     return { model }

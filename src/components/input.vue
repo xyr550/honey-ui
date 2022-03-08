@@ -124,8 +124,8 @@ export default defineComponent({
     transition: all .3s;
     z-index: 900;
     i {
-      color: #606266;
-      font-size: 16px;
+      color: #a2a3a5;
+      font-size: 15px;
       cursor: pointer;
       transition: color .2s cubic-bezier(.645,.045,.355,1);
     }

@@ -3,10 +3,14 @@
   <div style="margin-top:80px;">
     <span> form 表单示例 </span>
     <div class="form-box">
-      <ho-form :model="form" label-width="120px">
+      <ho-form :model="form" label-width="100px">
         <ho-form-item label="用户名">
           <ho-input v-model="form.userName"
-            placeholder="请输入用户名"/>
+            placeholder="请输入用户名" clearable />
+        </ho-form-item>
+        <ho-form-item label="昵称">
+          <ho-input v-model="form.rename"
+            placeholder="请输入昵称" clearable />
         </ho-form-item>
         <ho-form-item label="选择">
           <ho-switch v-model="form.active" />
@@ -42,6 +46,7 @@ export default {
   setup() {
     const form = reactive({
       userName: '嫌疑人',
+      rename: '1234',
       active: false,
       like: undefined,
       relation: []

@@ -17,7 +17,7 @@ export default defineComponent({
     },
     labelWidth: {
       type: String,
-      default: '80px'
+      default: ''
     }
   },
   setup(props) {

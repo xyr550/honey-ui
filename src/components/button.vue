@@ -109,7 +109,7 @@ export default defineComponent({
   transition: 0.1s;
   font-weight: 500;
   padding: 12px 18px;
-  font-size: 16px;
+  font-size: 14px;
   border-radius: 4px;
   /* 禁止元素文字被选中 */
   user-select: none;

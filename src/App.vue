@@ -6,6 +6,7 @@
     <switch-test />
     <radio-test />
     <checkbox-test />
+    <form-test />
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import InputTest from './demo/input-test.vue'
 import SwitchTest from './demo/switch-test.vue'
 import RadioTest from './demo/radio-test.vue'
 import CheckboxTest from './demo/checkbox-test.vue'
+import FormTest from './demo/form-test.vue'
 // import PictureTest from './demo/picture-test.vue';
 
 export default {
@@ -26,7 +28,8 @@ export default {
     InputTest,
     SwitchTest,
     RadioTest,
-    CheckboxTest
+    CheckboxTest,
+    FormTest
   },
   setup() {
   }

@@ -11,6 +11,8 @@ import HoRadio from './components/radio.vue'
 import HoRadioGroup from './components/radio-group.vue'
 import HoCheckbox from './components/checkbox.vue'
 import HoCheckboxGroup from './components/checkbox-group.vue'
+import HoForm from './components/form.vue'
+import HoFormItem from './components/form-item.vue';
 import pictureViewer from './components/picture-viewer.vue'
 
 const app = createApp(App)
@@ -25,6 +27,8 @@ app.component('HoRadio', HoRadio)
 app.component('HoRadioGroup', HoRadioGroup)
 app.component('HoCheckbox', HoCheckbox)
 app.component('HoCheckboxGroup', HoCheckboxGroup)
+app.component('HoForm', HoForm)
+app.component('HoFormItem', HoFormItem)
 app.component('pictureViewer', pictureViewer)
 // Vue.component(HoButton.name, HoButton)
 

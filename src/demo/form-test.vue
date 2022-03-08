@@ -1,0 +1,68 @@
+<template>
+  <!-- switch示例 -->
+  <div style="margin-top:80px;">
+    <span> form 表单示例 </span>
+    <div class="form-box">
+      <ho-form :model="form" label-width="120px">
+        <ho-form-item label="用户名">
+          <ho-input v-model="form.userName"
+            placeholder="请输入用户名"/>
+        </ho-form-item>
+        <ho-form-item label="选择">
+          <ho-switch v-model="form.active" />
+        </ho-form-item>
+        <ho-form-item label="喜欢的水果">
+          <ho-radio-group  v-model="form.like">
+            <ho-radio label="banana"> 香蕉 </ho-radio>
+            <ho-radio label="apple"> 苹果 </ho-radio>
+            <ho-radio label="grapes"> 葡萄 </ho-radio>
+          </ho-radio-group>
+        </ho-form-item>
+        <ho-form-item label="最轻松">
+          <ho-checkbox-group v-model="form.relation">
+            <ho-checkbox
+              v-for="item in relations"
+              :key="item.value"
+              :label="item.value">
+              {{ item.label }}
+            </ho-checkbox>
+          </ho-checkbox-group>
+        </ho-form-item>
+      </ho-form>
+    </div>
+  </div>
+</template>
+
+<script>
+import {
+  reactive
+} from 'vue'
+
+export default {
+  setup() {
+    const form = reactive({
+      userName: '嫌疑人',
+      active: false,
+      like: undefined,
+      relation: []
+    })
+    const relations = [
+      { value: 'phone', label: '手机' },
+      { value: 'friend', label: '朋友' },
+      { value: 'animal', label: '宠物' },
+      { value: 'someone', label: '路人' },
+      { value: 'family', label: '家人' }
+    ]
+    return { form, relations }
+  }
+};
+</script>
+
+<style lang="less" scoped>
+.form-box {
+  margin-top:20px;
+  width:600px;
+  border: 1px solid rgb(235, 218, 218);
+  padding: 20px 20px;
+}
+</style>

@@ -1,11 +1,11 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2944016 */
-  src: url('iconfont.eot?t=1644834264953'); /* IE9 */
-  src: url('iconfont.eot?t=1644834264953#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('iconfont.woff2?t=1644834264953') format('woff2'),
-       url('iconfont.woff?t=1644834264953') format('woff'),
-       url('iconfont.ttf?t=1644834264953') format('truetype'),
-       url('iconfont.svg?t=1644834264953#iconfont') format('svg');
+  src: url('iconfont.eot?t=1646791150597'); /* IE9 */
+  src: url('iconfont.eot?t=1646791150597#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('iconfont.woff2?t=1646791150597') format('woff2'),
+       url('iconfont.woff?t=1646791150597') format('woff'),
+       url('iconfont.ttf?t=1646791150597') format('truetype'),
+       url('iconfont.svg?t=1646791150597#iconfont') format('svg');
 }
 
 .iconfont {
@@ -14,6 +14,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.ho-icon-calendar:before {
+  content: "\e814";
 }
 
 .ho-icon-eye:before {

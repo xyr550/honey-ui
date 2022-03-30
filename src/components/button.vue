@@ -224,8 +224,8 @@ export default defineComponent({
 }
 
 .is-disabled{
-  background: #EEEEEE !important;
-  border: 1px solid #EEEEEE !important;
+  background: #eeeeee !important;
+  border: 1px solid #eeeeee !important;
   color:#bebbbb !important;
   cursor:not-allowed;
 }

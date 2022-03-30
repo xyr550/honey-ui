@@ -13,7 +13,10 @@ import HoCheckbox from './components/checkbox.vue'
 import HoCheckboxGroup from './components/checkbox-group.vue'
 import HoForm from './components/form.vue'
 import HoFormItem from './components/form-item.vue';
+import HoCalendar from './components/calendar.vue';
 import pictureViewer from './components/picture-viewer.vue'
+import HoPagingBar from './components/paging-bar.vue'
+import HoPagination from './components/pagination.vue'
 
 const app = createApp(App)
 
@@ -29,7 +32,10 @@ app.component('HoCheckbox', HoCheckbox)
 app.component('HoCheckboxGroup', HoCheckboxGroup)
 app.component('HoForm', HoForm)
 app.component('HoFormItem', HoFormItem)
+app.component('HoCalendar', HoCalendar)
 app.component('pictureViewer', pictureViewer)
+app.component('HoPagingBar', HoPagingBar)
+app.component('HoPagination', HoPagination)
 // Vue.component(HoButton.name, HoButton)
 
 app.mount('#app')

@@ -6,7 +6,7 @@
         style="width:96px; margin-left:50px;">
         <label v-for="e in pages" :key="e"
           :class="['ho-page_option_label', {'is-active':e===currentPage}]"
-          @click="changeCurrentPage(e)">
+          @click="changeCurrentPage('choose', e)">
           {{ `${e}/${pages.length}` }}
         </label>
       </div>
@@ -21,14 +21,18 @@
       </div>
     </div>
     <div class="pagination">
-      <span>
+      <span
+        :class="{'is-disabled': currentPage===1}"
+        @click="changeCurrentPage('last')">
         <i :class="['iconfont', 'ho-icon-arrow-double-left']"></i>
       </span>
       <span class="ho-page-inf_box_1" @click="changePage">
         {{`${currentPage}/${pages.length || 1}`}}
         <i :class="['iconfont', 'ho-icon-arrow-down','ho-page-inf']"></i>
       </span>
-      <span>
+      <span
+       :class="{'is-disabled': currentPage===pages.length}"
+        @click="changeCurrentPage('next')">
         <i :class="['iconfont', 'ho-icon-arrow-double-right']"></i>
       </span>
       <span class="ho-page-inf_box_2" @click="changeOption">
@@ -39,7 +43,7 @@
   </div>
 </template>
 <script>
-import { computed, ref } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import '../assets/css/scrollbar.css'
 
 export default {
@@ -53,24 +57,24 @@ export default {
       type: Number,
       default: 0
     },
-    pageSize: {
-      type: Number,
-      default: 50
-    }
+    firstPageSize: Number
   },
   setup(props, { emit }) {
+    // 页面大小，无可选条件时，默认0条
+    const activeOption = ref(props.options.length ? props.options[0] : 0)
     // 动态计算页码总数
     const pages = computed(() => {
-      const maxPage = Math.ceil(props.total / props.pageSize)
       const allPages = []
-      for (let i = 1; i <= maxPage; i += 1) {
-        allPages.push(i)
+      if (activeOption.value) {
+        const maxPage = Math.ceil(props.total / activeOption.value)
+        for (let i = 1; i <= maxPage; i += 1) {
+          allPages.push(i)
+        }
       }
       return allPages
     })
     const showOption = ref(false)
     const showPage = ref(false)
-    const activeOption = ref(props.pageSize)
     const currentPage = ref(1)
     const changeOption = () => {
       showOption.value = !showOption.value
@@ -81,15 +85,30 @@ export default {
     // 换页面大小
     const changePageSize = (active) => {
       activeOption.value = active
+      currentPage.value = 1
       changeOption()
-      emit('pageSizeChange', { pageSize: active, page: currentPage.value })
+      emit('pageSizeChange', { pageSize: active, page: 1 })
     }
     // 换页面大小
-    const changeCurrentPage = (page) => {
-      currentPage.value = page
-      changePage()
-      emit('pageChange', { pageSize: activeOption.value, page })
+    const changeCurrentPage = (operation, page) => {
+      // 处理 表单选，上一页和下一页
+      if (operation === 'choose') {
+        currentPage.value = page
+        changePage()
+        emit('pageChange', { pageSize: activeOption.value, page })
+      } else if (operation === 'last' && currentPage.value > 1) {
+        currentPage.value -= 1
+        emit('pageChange', { pageSize: activeOption.value, page: currentPage.value })
+      } else if (operation === 'next' && currentPage.value < pages.value.length) {
+        currentPage.value += 1
+        emit('pageChange', { pageSize: activeOption.value, page: currentPage.value })
+      }
     }
+    onMounted(() => {
+      if (props.firstPageSize) {
+        activeOption.value = props.firstPageSize
+      }
+    })
     return {
       showOption,
       showPage,
@@ -124,12 +143,10 @@ export default {
       color: #409eff;
       border-color: #409eff;
     }
-    &.disabled {
+    &.is-disabled {
       cursor: auto;
-      opacity: 0.4;
-      &:hover {
-        color: #333
-      }
+      color: #bebbbb;
+      border-color: #e4e4e4;
     }
   }
   .ho-page-inf {

@@ -9,8 +9,12 @@
         @pageChange="pageChange"/>
       <ho-pagination
         :total="508"
+        :first-page-size="50"
         @pageSizeChange="pageSizeChange"
         @pageChange="pageChange"/>
+      <label class="text"> 想使用自定义选项通过options传递，例:options="[30, 55]"</label><br>
+      <label class="text"> first-page-size 定义首次页码大小  </label><br>
+      <label class="text"> total 传递总数量  </label><br>
     </div>
 </template>
 
@@ -36,4 +40,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.text {
+  color:blue;
+  margin-left:50px
+}
 </style>

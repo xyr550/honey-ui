@@ -7,6 +7,7 @@
       :name="name"
       :value ="modelValue"
       :disabled="disabled"
+      :readonly="readonly"
       @input = "handleInput">
     <span class="ho-input_suffix" v-show="hasIcon">
       <i v-if="showPassword && modelValue"
@@ -54,6 +55,10 @@ export default defineComponent({
     modelValue: {
       type: String,
       default: ''
+    },
+    readonly: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
@@ -122,7 +127,7 @@ export default defineComponent({
     line-height: 40px;
     text-align: center;
     transition: all .3s;
-    z-index: 900;
+    z-index: 2;
     i {
       color: #a2a3a5;
       font-size: 15px;

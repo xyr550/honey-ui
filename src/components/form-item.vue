@@ -27,6 +27,9 @@ export default defineComponent({
 <style lang="less" scoped>
 .ho-form-item {
    padding: 10px 8px 8px 10px;
+   display: inline-flex;
+   width: 100%;
+   height: 42px;
   .ho-form-item_label {
     text-align: right;
     vertical-align: middle;
@@ -41,7 +44,7 @@ export default defineComponent({
     line-height: 40px;
     position: relative;
     font-size: 14px;
-    overflow: hidden;
+    flex: 1;
   }
 }
 </style>

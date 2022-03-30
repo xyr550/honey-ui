@@ -178,7 +178,7 @@ export default defineComponent({
     padding: 10px 20px 20px;
     text-align: right;
     box-sizing: border-box;
-    :deep .ho-button:not(:first-child) {
+    :deep(.ho-button:not(:first-child)) {
       margin-left: 16px !important;
     }
   }

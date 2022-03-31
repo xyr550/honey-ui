@@ -11,12 +11,12 @@
           <ho-input v-model="form.userName"
             placeholder="请输入用户名" clearable />
         </ho-form-item>
-        <ho-form-item label="预约时间">
-          <ho-calendar v-model="form.time" />
-        </ho-form-item>
         <ho-form-item label="昵称">
           <ho-input v-model="form.rename"
             placeholder="请输入昵称" clearable />
+        </ho-form-item>
+        <ho-form-item label="预约时间">
+          <ho-calendar v-model="form.time" />
         </ho-form-item>
         <ho-form-item label="选择">
           <ho-switch v-model="form.active" />

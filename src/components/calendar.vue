@@ -121,7 +121,7 @@ export default defineComponent({
       context.emit('update:modelValue', date)
       setTimeout(() => {
         blur()
-      }, 200);
+      }, 150);
     }
     // 传递面板上的时间，判断是不是用户选择的日期
     const isSelected = (date) => {
@@ -231,31 +231,34 @@ export default defineComponent({
   background-color: white;
   top: 50px;
   width: 400px;/* 暂时使用固定宽度和高度，后面会去除宽度和高度进行内容自适应现实 */
-  height: 300px;
+  height: 255px;
   border: 1px solid #e4e7ed;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
   border-radius: 4px;
   z-index: 5;
   user-select: none;
-}
-.calendar_box .triangle {
-  position: absolute;
-  width: 0;
-  height: 0;
-  top: -14px;
-  left: 25px;
-  border: 7px solid transparent;
-  border-bottom: 7px solid white;
-}
-.calendar_box::before {
-  position: absolute;
-  content: "";
-  width: 0;
-  height: 0;
-  top: -16px;
-  left: 24px;
-  border: 8px solid transparent;
-  border-bottom: 8px solid #e4e7ed;
+  &::before {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    top: -16px;
+    left: 24px;
+    border: 8px solid transparent;
+    border-bottom: 8px solid #e4e7ed;
+  }
+  .calendar_content {
+    line-height: 25px;
+  }
+  .triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: -14px;
+    left: 25px;
+    border: 7px solid transparent;
+    border-bottom: 7px solid white;
+  }
 }
 .calendar_header {
   display: flex;
@@ -264,10 +267,10 @@ export default defineComponent({
   line-height: 30px;
   font-size: 14px;
   font-weight: 100;
-}
-.calendar_header span {
-  user-select: none;
-  cursor: pointer;
+  > span {
+    user-select: none;
+    cursor: pointer;
+  }
 }
 .header_time {
   box-sizing: border-box;
@@ -283,7 +286,7 @@ export default defineComponent({
 .cell {
   display: inline-flex;
   width: 48px;
-  height: 34px;
+  height: 28px;
   justify-content: center;
   align-items: center;
   font-size: 14px;

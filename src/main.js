@@ -4,26 +4,24 @@ import './index.css'
 import './assets/fonts/iconfont.css'
 import HoButton from './components/button.vue'
 import HoDialog from './components/dialog.vue'
-import HoBar from './components/bar.vue'
 import HoInput from './components/input.vue'
-import HoSwitch from './components/switch.vue'
-import HoRadio from './components/radio.vue'
-import HoRadioGroup from './components/radio-group.vue'
-import HoCheckbox from './components/checkbox.vue'
-import HoCheckboxGroup from './components/checkbox-group.vue'
-import HoForm from './components/form.vue'
-import HoFormItem from './components/form-item.vue';
+import HoSwitch from './components/selection/switch.vue'
+import HoRadio from './components/selection/radio.vue'
+import HoRadioGroup from './components/selection/radio-group.vue'
+import HoCheckbox from './components/selection/checkbox.vue'
+import HoCheckboxGroup from './components/selection/checkbox-group.vue'
+import HoForm from './components/form/form.vue'
+import HoFormItem from './components/form/form-item.vue';
 import HoCalendar from './components/calendar.vue';
 import pictureViewer from './components/picture-viewer.vue'
-import HoPagingBar from './components/paging-bar.vue'
-import HoPagination from './components/pagination.vue'
+import HoPagingBar from './components/pages/paging-bar.vue'
+import HoPagination from './components/pages/pagination.vue'
 
 const app = createApp(App)
 
 // 全局注册组件, vue3只能在示例上注册
 app.component('HoButton', HoButton)
 app.component('HoDialog', HoDialog)
-app.component('HoBar', HoBar)
 app.component('HoInput', HoInput)
 app.component('HoSwitch', HoSwitch)
 app.component('HoRadio', HoRadio)

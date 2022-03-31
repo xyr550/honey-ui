@@ -44,7 +44,7 @@
 </template>
 <script>
 import { computed, ref, onMounted } from 'vue'
-import '../assets/css/scrollbar.css'
+import '../../assets/css/scrollbar.css'
 
 export default {
   name: 'HoPagination',

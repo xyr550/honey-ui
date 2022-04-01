@@ -3,6 +3,7 @@
     <button-test />
     <dialog-test />
     <input-test />
+    <editor-test />
     <switch-test />
     <radio-test />
     <checkbox-test />
@@ -19,7 +20,8 @@ import SwitchTest from './demo/switch-test.vue'
 import RadioTest from './demo/radio-test.vue'
 import CheckboxTest from './demo/checkbox-test.vue'
 import FormTest from './demo/form-test.vue'
-import barTest from './demo/bar-test.vue'
+import BarTest from './demo/bar-test.vue'
+import EditorTest from './demo/editor-test.vue'
 // import PictureTest from './demo/picture-test.vue';
 
 export default {
@@ -32,7 +34,8 @@ export default {
     RadioTest,
     CheckboxTest,
     FormTest,
-    barTest
+    BarTest,
+    EditorTest
   },
   setup() {
   }

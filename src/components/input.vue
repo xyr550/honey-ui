@@ -1,5 +1,5 @@
 <template>
-  <div class="ho-input ho-input-suffix">
+  <div class="ho-input ho-input-suffix" @mouseenter="mouseenter" @mouseleave="mouseleave">
     <input
       :class="['ho-input_inner', {'is-disabled': disabled}]"
       :type="passwordVisible ? 'text' : type"
@@ -13,8 +13,8 @@
       <i v-if="showPassword && modelValue"
         :class="['iconfont', `${eyeIcon}`]"
         @click="changeEyeIcon" />
-      <i v-if="clearable && modelValue"
-        class="iconfont ho-icon-error"
+      <i v-if="clearable && modelValue && hovering"
+        class="iconfont ho-icon-close"
          @click="clear" />
     </span>
   </div>
@@ -64,6 +64,7 @@ export default defineComponent({
   setup(props, context) {
     const change = ref(true)
     const passwordVisible = ref(false)
+    const hovering = ref(false)
     const hasIcon = computed(() => props.clearable || props.showPassword)
     const eyeIcon = computed(() => (change.value ? 'ho-icon-eye' : 'ho-icon-eye-close'))
 
@@ -79,9 +80,22 @@ export default defineComponent({
     const handleInput = (e) => {
       context.emit('update:modelValue', e.target.value)
     }
-
+    const mouseenter = () => {
+      hovering.value = true
+    }
+    const mouseleave = () => {
+      hovering.value = false
+    }
     return {
-      hasIcon, passwordVisible, eyeIcon, changeEyeIcon, clear, handleInput
+      hasIcon,
+      passwordVisible,
+      eyeIcon,
+      changeEyeIcon,
+      clear,
+      handleInput,
+      hovering,
+      mouseenter,
+      mouseleave
     }
   }
 });
@@ -130,7 +144,7 @@ export default defineComponent({
     z-index: 2;
     i {
       color: #a2a3a5;
-      font-size: 15px;
+      font-size: 14px;
       cursor: pointer;
       transition: color .2s cubic-bezier(.645,.045,.355,1);
     }

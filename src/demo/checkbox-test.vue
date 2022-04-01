@@ -1,5 +1,5 @@
 <template>
-  <!-- switch示例 -->
+  <!-- checkbox示例 -->
   <div>
     <div style="margin-top:80px">
       <span style="color:#4B0082;margin-right:30px">checkbox示例

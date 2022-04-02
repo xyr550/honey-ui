@@ -21,10 +21,12 @@
           <span @click="nextYear"> &gt;&gt; </span>
       </div>
       <div class="calendar_content">
-        <span v-for="j in 7" :key="`_${j}`" class="cell">
-          {{weekDays[j - 1]}}
-        </span>
-        <div v-for="i in 6" :key="i">
+        <div class="cell_box">
+          <span v-for="j in 7" :key="`_${j}`" class="cell">
+            {{weekDays[j - 1]}}
+          </span>
+        </div>
+        <div v-for="i in 6" :key="i" class="cell_box">
           <span v-for="j in 7" :key="j" class="cell" :class="[{
             'is-selected': isSelected(visibleDays[(i -1) * 7 + (j -1)]),
             'not-currentMonth': !isCurrentMonth(visibleDays[(i -1) * 7 + (j -1)]),
@@ -230,7 +232,8 @@ export default defineComponent({
   position: absolute;
   background-color: white;
   top: 50px;
-  width: 400px;/* 暂时使用固定宽度和高度，后面会去除宽度和高度进行内容自适应现实 */
+  width: 100%;/* 暂时使用固定宽度和高度，后面会去除宽度和高度进行内容自适应现实 */
+  min-width: 300px;
   height: 255px;
   border: 1px solid #e4e7ed;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
@@ -248,6 +251,7 @@ export default defineComponent({
     border-bottom: 8px solid #e4e7ed;
   }
   .calendar_content {
+    width: 100%;
     line-height: 25px;
   }
   .triangle {
@@ -283,10 +287,16 @@ export default defineComponent({
   font-weight: 500;
   display: flex;
 }
+.cell_box {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
 .cell {
   display: inline-flex;
-  width: 48px;
+  width: 11.3%;
   height: 28px;
+  box-sizing: border-box;
   justify-content: center;
   align-items: center;
   font-size: 14px;

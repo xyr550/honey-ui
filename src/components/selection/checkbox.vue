@@ -7,6 +7,7 @@
         type="checkbox"
         :value="label"
         :name="name"
+        :checked="checked"
         v-model="model">
     </span>
     <span class="ho-checkbox_label">
@@ -37,6 +38,10 @@ export default defineComponent({
     name: {
       type: String,
       default: ''
+    },
+    checked: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
@@ -46,13 +51,15 @@ export default defineComponent({
     const isGroup = computed(() => !!groupContext)
     const model = computed({
       get() {
-        return isGroup.value ? groupModel.value : props.modelValue
+        return isGroup.value ? groupModel.value : props.modelValue || props.checked
       },
       set(val) {
         if (isGroup.value) {
           groupModel.value = val
           groupContext.emit('update:modelValue', val)
-        } else context.emit('update:modelValue', val)
+        } else {
+          context.emit('update:modelValue', val)
+        }
       }
     })
     // 为单个checkbox,model值为true/false

@@ -5,6 +5,7 @@
     'is-round': round,
     'is-disabled': disabled,
     'has-icon-span': hasIcon}]"
+    :style="circle ? circlePadding : paddingNow"
     :disabled="disabled"
      @click="handleClick">
     <i v-if="hasIcon" :class="['iconfont', `${icon}`]"></i>
@@ -46,13 +47,31 @@ export default defineComponent({
     disabled: {
       type: Boolean,
       default: false
+    },
+    size: {
+      type: String,
+      default: 'default'
     }
   },
   setup(props, context) {
     // const { icon } = toRefs(props)
     // 使用ES6解构赋值的话，必须使用toRefs包裹，才能是响应式
+    const paddings = {
+      default: {},
+      medium: { padding: '10px 17px' },
+      small: { padding: '8px 12px' },
+      mini: { padding: '6px 8px', fontSize: '12px' }
+    }
+    const circlePaddins = {
+      default: {},
+      medium: { padding: '10px' },
+      small: { padding: '8px' },
+      mini: { padding: '5px', fontSize: '12px' }
+    }
     const state = reactive({
-      hasIcon: computed(() => props.icon !== '')
+      hasIcon: computed(() => props.icon !== ''),
+      paddingNow: paddings[props.size],
+      circlePadding: circlePaddins[props.size]
     })
     const handleClick = (e) => {
       context.emit('buttonClick', e)

@@ -4,7 +4,7 @@ import './index.css'
 import './assets/fonts/iconfont.css'
 import HoButton from './components/button.vue'
 import HoDialog from './components/dialog.vue'
-import HoInput from './components/input.vue'
+import HoInput from './components/editor/input.vue'
 import HoSwitch from './components/selection/switch.vue'
 import HoRadio from './components/selection/radio.vue'
 import HoRadioGroup from './components/selection/radio-group.vue'
@@ -12,11 +12,12 @@ import HoCheckbox from './components/selection/checkbox.vue'
 import HoCheckboxGroup from './components/selection/checkbox-group.vue'
 import HoForm from './components/form/form.vue'
 import HoFormItem from './components/form/form-item.vue';
-import HoCalendar from './components/calendar.vue';
+import HoCalendar from './components/editor/calendar.vue';
 import pictureViewer from './components/picture-viewer.vue'
 import HoPagingBar from './components/pages/paging-bar.vue'
 import HoPagination from './components/pages/pagination.vue'
-import HoSelect from './components/select.vue'
+import HoSelect from './components/editor/select.vue'
+import HoTable from './components/table/table.vue'
 
 import clickOutsideHide from './config/click-outside-hide'
 
@@ -39,6 +40,7 @@ app.component('pictureViewer', pictureViewer)
 app.component('HoPagingBar', HoPagingBar)
 app.component('HoPagination', HoPagination)
 app.component('HoSelect', HoSelect)
+app.component('HoTable', HoTable)
 // Vue.component(HoButton.name, HoButton)
 
 app.mount('#app')

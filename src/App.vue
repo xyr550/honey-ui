@@ -9,6 +9,7 @@
     <checkbox-test />
     <form-test />
     <bar-test />
+    <table-test />
   </div>
 </template>
 
@@ -22,6 +23,7 @@ import CheckboxTest from './demo/checkbox-test.vue'
 import FormTest from './demo/form-test.vue'
 import BarTest from './demo/bar-test.vue'
 import EditorTest from './demo/editor-test.vue'
+import TableTest from './demo/table-test.vue'
 // import PictureTest from './demo/picture-test.vue';
 
 export default {
@@ -35,7 +37,8 @@ export default {
     CheckboxTest,
     FormTest,
     BarTest,
-    EditorTest
+    EditorTest,
+    TableTest
   },
   setup() {
   }

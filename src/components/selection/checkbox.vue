@@ -1,5 +1,6 @@
 <template>
-  <label :class="['ho-checkbox', {'is-checked': isChecked}]">
+  <label :class="['ho-checkbox', {'is-checked': isChecked}]"
+    :style="{marginRight: isGroup ? '30px' : 0}">
     <span class="ho-checkbox_input">
       <span class="ho-checkbox_inner"></span>
       <input
@@ -10,7 +11,8 @@
         :checked="checked"
         v-model="model">
     </span>
-    <span class="ho-checkbox_label">
+    <span class="ho-checkbox_label"
+      :style="{paddingLeft: label || $slots.default ? '10px' : 0}">
       <slot></slot>
       <template v-if="!$slots.default">
         {{ label }}
@@ -67,7 +69,7 @@ export default defineComponent({
     const isChecked = computed(() => (
       isGroup.value ? model.value.includes(props.label) : model.value))
 
-    return { model, isChecked }
+    return { model, isChecked, isGroup }
   }
 });
 </script>
@@ -83,7 +85,6 @@ export default defineComponent({
   color: #606266;
   outline: none;
   font-size: 14px;
-  margin-right: 30px;
   user-select: none;
   .ho-checkbox_input {
     white-space: nowrap;
@@ -95,7 +96,6 @@ export default defineComponent({
   }
   .ho-checkbox_label {
     font-size: 14px;
-    padding-left: 10px;
   }
 }
 .ho-checkbox_original {

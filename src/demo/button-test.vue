@@ -16,9 +16,9 @@
       <ho-button plain>test</ho-button>
       <ho-button plain type="primary">button1</ho-button>
       <ho-button plain type="danger">button2</ho-button>
-      <ho-button plain type="success">button3</ho-button>
-      <ho-button plain type="info">button4</ho-button>
-      <ho-button plain type="warning">删除</ho-button>
+      <ho-button plain type="success" size="medium">button3</ho-button>
+      <ho-button plain type="info" size="small">button4</ho-button>
+      <ho-button plain type="warning" size="mini">删除</ho-button>
     </div>
     <div style="margin-top:50px;">
       <span style="color:#4B0082; margin-right:20px">圆角按钮</span>
@@ -27,8 +27,8 @@
       <ho-button round type="primary">button1</ho-button>
       <ho-button round type="danger">button2</ho-button>
       <ho-button round plain type="success">成功</ho-button>
-      <ho-button round plain type="info">button4</ho-button>
-      <ho-button round plain type="warning">删除</ho-button>
+      <ho-button round plain type="info" size="medium">button4</ho-button>
+      <ho-button round plain type="warning" size="mini">删除</ho-button>
     </div>
     <div style="margin-top:50px;">
       <span style="color:#4B0082; margin-right:20px">圆形按钮</span>
@@ -38,7 +38,7 @@
       <ho-button circle type="danger">都</ho-button>
       <ho-button circle plain type="success">是</ho-button>
       <ho-button circle plain type="info">假</ho-button>
-      <ho-button circle plain type="warning">的</ho-button>
+      <ho-button circle plain type="warning" size="medium">的</ho-button>
     </div>
     <div style="margin-top:50px;">
       <span style="color:#4B0082; margin-right:20px">图标按钮</span>
@@ -46,9 +46,9 @@
       <ho-button icon="ho-icon-edit" circle />
       <ho-button icon="ho-icon-favorite" circle type="primary"></ho-button>
       <ho-button icon="ho-icon-search" circle type="danger"></ho-button>
-      <ho-button icon="ho-icon-smile" circle plain type="success"></ho-button>
-      <ho-button icon="ho-icon-add" circle plain type="info"></ho-button>
-      <ho-button icon="ho-icon-dianzan" circle plain type="warning"></ho-button>
+      <ho-button icon="ho-icon-smile" circle plain type="success" size="medium"></ho-button>
+      <ho-button icon="ho-icon-add" circle plain type="info" size="small"></ho-button>
+      <ho-button icon="ho-icon-dianzan" circle plain type="warning" size="mini"></ho-button>
       <ho-button icon="ho-icon-ashbin" type="warning">danger</ho-button>
       <ho-button icon="ho-icon-edit" type="success">success</ho-button>
     </div>

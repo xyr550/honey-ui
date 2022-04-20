@@ -1,10 +1,10 @@
 <template>
-  <div style="height:600px" class="table">
+  <div style="width:1000px" class="table">
     <ho-table
       ref="tableRef"
       :columns="columns"
       :data="data"
-      height="150"
+      height="400px"
       @selectionChange="selectionChange">
       <!-- 其中 age 是对应的插槽名，{row, col, index} 对应的是行、列、索引这三个参数 -->
       <template v-slot:age="{row}">{{ row.age + '岁'}}</template>
@@ -33,7 +33,7 @@ export default {
         {
           title: '姓名',
           key: 'name',
-          width: '70px',
+          width: 100,
           textAlign: 'center',
           headerStyle: { textAlign: 'center' },
           style: { textAlign: 'center' }
@@ -47,16 +47,19 @@ export default {
         {
           title: '职位',
           key: 'job',
-          width: 100
+          width: 130,
+          style: {
+            maxWidth: '130px'
+          }
         },
         {
           title: '描述',
-          key: 'desc'
+          key: 'desc',
+          width: 400
         },
         {
           title: '操作',
-          slot: 'action',
-          width: 300
+          slot: 'action'
         }
       ],
       data: [
@@ -91,6 +94,30 @@ export default {
           name: 'Lucy',
           age: 18,
           job: '测试'
+        },
+        {
+          id: 6,
+          name: 'kkim',
+          age: 18,
+          job: '测试'
+        },
+        {
+          id: 7,
+          name: 'pily',
+          age: 18,
+          job: '门卫'
+        },
+        {
+          id: 8,
+          name: 'dog',
+          age: 18,
+          job: '测试'
+        },
+        {
+          id: 9,
+          name: 'ying',
+          age: 18,
+          job: '高级工程师'
         }
       ]
     })
@@ -112,7 +139,6 @@ export default {
 .table {
   .ho-button {
     margin-right: 12px;
-    vertical-align: -webkit-baseline-middle;
   }
 
 }

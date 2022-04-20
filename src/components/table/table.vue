@@ -22,7 +22,7 @@
         </thead>
       </table>
       </div>
-      <div class="ho-table__body">
+      <div class="ho-table__body" :style="{height}">
         <table>
           <tbody>
             <!-- 表体循环 -->
@@ -62,7 +62,11 @@ export default defineComponent({
   name: 'HoTable',
   props: {
     columns: Array,
-    data: Array
+    data: Array,
+    height: {
+      type: String,
+      default: '500px'
+    }
   },
   setup(props, { emit }) {
     const selectedRows = reactive([])
@@ -130,6 +134,11 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .ho-table {
+  overflow-y: hidden;
+  .ho-table__body {
+    position: relative;
+    overflow-y: auto;
+  }
   table {
     width: 100%;
     border-collapse: collapse;
@@ -141,13 +150,23 @@ export default defineComponent({
     background: #f7f7f7;
     color: #5c6b77;
     font-weight: 600;
-    white-space: nowrap;
   }
   table td,
   table th {
     padding: 8px 16px;
     border: 1px solid #e9e9e9;
     text-align: left;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
   }
+  .ho-table_cell {
+  }
+}
+::-webkit-scrollbar {
+  position: absolute;
+  z-index: 10;
+  width:5px;
+  margin-left: 5px;
 }
 </style>

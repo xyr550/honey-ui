@@ -44,7 +44,6 @@
 </template>
 <script>
 import { computed, ref, onMounted } from 'vue'
-import '../../assets/css/scrollbar.css'
 
 export default {
   name: 'HoPagination',
@@ -132,7 +131,8 @@ export default {
   }
 }
 </script>
-<style scoped lang="less">
+<style lang="less" scoped>
+@import url('../../assets/css/scrollbar.css');
 .ho-page {
   display: block;
   padding: 10px 8px;

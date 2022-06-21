@@ -23,6 +23,8 @@ import HoMain from './components/base/ho-main.vue'
 import HoHeader from './components/base/ho-header.vue'
 import HoFooter from './components/base/ho-footer.vue'
 import HoAside from './components/base/ho-aside.vue'
+import HoVBox from './components/base/ho-v-box.vue'
+import HoHBox from './components/base/ho-h-box.vue'
 import EmptyPanel from './components/base/empty-panel.vue'
 
 import clickOutsideHide from './config/click-outside-hide'
@@ -52,6 +54,8 @@ app.component('HoHeader', HoHeader)
 app.component('HoMain', HoMain)
 app.component('HoFooter', HoFooter)
 app.component('HoAside', HoAside)
+app.component('HoHBox', HoHBox)
+app.component('HoVBox', HoVBox)
 app.component('EmptyPanel', EmptyPanel)
 // Vue.component(HoButton.name, HoButton)
 

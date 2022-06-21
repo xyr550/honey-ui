@@ -1,6 +1,6 @@
 <template>
-  <ho-container size="1">
-    <ho-container size="1" class="iconfont empty-panel ho-icon-nodata">
+  <ho-container style="height:100%; width:100%;">
+    <ho-container direction="vertical" class="iconfont empty-panel ho-icon-nodata">
       <div v-show="showSorry" style="font-size: 24px; font-weight: bold">
         抱歉~
       </div>
@@ -51,6 +51,7 @@ export default {
 .empty-panel {
   padding: 8px 16px;
   font-size: 100px;
+  color: rgb(96, 98, 102);
   user-select: none;
   align-items: center;
   justify-content: center;

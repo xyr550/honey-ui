@@ -1,5 +1,5 @@
 <template>
-  <section class="ho-container" :class="{ 'is-vertical': isVertical, h100w100:size }">
+  <section class="ho-container" :class="{ 'is-vertical': isVertical, size1:size }">
     <slot></slot>
   </section>
 </template>
@@ -14,16 +14,21 @@ export default defineComponent({
   props: {
     direction: String,
     size: {
-      type: Number,
-      default: 0
+      type: String,
+      default: ''
     }
   },
   setup(props, { slots }) {
-    console.log('slots', slots.default)
     const isVertical = computed(() => {
+      // console.log('slots', slots.default())
       if (props.direction === 'vertical') return true
       if (props.direction === 'horizontal') return false
-      return !!(slots && slots.default)
+      return slots && slots.default
+        ? slots.default().some((vnode) => {
+          const tag = vnode.type && vnode.type.name
+          return tag === 'HoHeader' || tag === 'HoFooter'
+        })
+        : false
     })
     return {
       isVertical
@@ -44,8 +49,7 @@ export default defineComponent({
 .is-vertical {
   flex-direction: column;
 }
-.h100w100 {
-  height: 100%;
-  width: 100%
+.size1 {
+  flex-grow: 1;
 }
 </style>

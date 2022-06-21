@@ -133,6 +133,7 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
+@import url('../../assets/css/scrollbar.css');
 .ho-table {
   overflow-y: hidden;
   .ho-table__body {

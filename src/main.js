@@ -18,6 +18,12 @@ import HoPagingBar from './components/pages/paging-bar.vue'
 import HoPagination from './components/pages/pagination.vue'
 import HoSelect from './components/editor/select.vue'
 import HoTable from './components/table/table.vue'
+import HoContainer from './components/base/ho-container.vue'
+import HoMain from './components/base/ho-main.vue'
+import HoHeader from './components/base/ho-header.vue'
+import HoFooter from './components/base/ho-footer.vue'
+import HoAside from './components/base/ho-aside.vue'
+import EmptyPanel from './components/base/empty-panel.vue'
 
 import clickOutsideHide from './config/click-outside-hide'
 
@@ -41,6 +47,12 @@ app.component('HoPagingBar', HoPagingBar)
 app.component('HoPagination', HoPagination)
 app.component('HoSelect', HoSelect)
 app.component('HoTable', HoTable)
+app.component('HoContainer', HoContainer)
+app.component('HoHeader', HoHeader)
+app.component('HoMain', HoMain)
+app.component('HoFooter', HoFooter)
+app.component('HoAside', HoAside)
+app.component('EmptyPanel', EmptyPanel)
 // Vue.component(HoButton.name, HoButton)
 
 app.mount('#app')

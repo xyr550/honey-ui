@@ -1,11 +1,11 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2944016 */
-  src: url('iconfont.eot?t=1646791150597'); /* IE9 */
-  src: url('iconfont.eot?t=1646791150597#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('iconfont.woff2?t=1646791150597') format('woff2'),
-       url('iconfont.woff?t=1646791150597') format('woff'),
-       url('iconfont.ttf?t=1646791150597') format('truetype'),
-       url('iconfont.svg?t=1646791150597#iconfont') format('svg');
+  src: url('iconfont.eot?t=1655779377216'); /* IE9 */
+  src: url('iconfont.eot?t=1655779377216#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('iconfont.woff2?t=1655779377216') format('woff2'),
+       url('iconfont.woff?t=1655779377216') format('woff'),
+       url('iconfont.ttf?t=1655779377216') format('truetype'),
+       url('iconfont.svg?t=1655779377216#iconfont') format('svg');
 }
 
 .iconfont {
@@ -14,6 +14,94 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.ho-icon-add-team:before {
+  content: "\e6f2";
+}
+
+.ho-icon-delete-team:before {
+  content: "\e6f3";
+}
+
+.ho-icon-fullscreen:before {
+  content: "\e73a";
+}
+
+.ho-icon-fullscreen-exit:before {
+  content: "\e73b";
+}
+
+.ho-icon-check-circle:before {
+  content: "\e7c0";
+}
+
+.ho-icon-minus-circle1:before {
+  content: "\e7c5";
+}
+
+.ho-icon-close-circle:before {
+  content: "\e7c6";
+}
+
+.ho-icon-smile1:before {
+  content: "\e7c8";
+}
+
+.ho-icon-meh:before {
+  content: "\e7c9";
+}
+
+.ho-icon-frown:before {
+  content: "\e7ca";
+}
+
+.ho-icon-poweroff-circle:before {
+  content: "\e7cb";
+}
+
+.ho-icon-play-circle:before {
+  content: "\e7cc";
+}
+
+.ho-icon-YUAN-circle:before {
+  content: "\e7d3";
+}
+
+.ho-icon-user:before {
+  content: "\e7ea";
+}
+
+.ho-icon-wechat-line:before {
+  content: "\e695";
+}
+
+.ho-icon-wechat1:before {
+  content: "\e69e";
+}
+
+.ho-icon-QQ:before {
+  content: "\e89d";
+}
+
+.ho-icon-weixin:before {
+  content: "\e89e";
+}
+
+.ho-icon-no-data-3:before {
+  content: "\e629";
+}
+
+.ho-icon-wushuju:before {
+  content: "\e60f";
+}
+
+.ho-icon-wushuju1:before {
+  content: "\e678";
+}
+
+.ho-icon-nodata:before {
+  content: "\e62c";
 }
 
 .ho-icon-calendar:before {

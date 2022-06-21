@@ -10,6 +10,7 @@
     <form-test />
     <bar-test />
     <table-test />
+    <base-test />
   </div>
 </template>
 
@@ -24,6 +25,7 @@ import FormTest from './demo/form-test.vue'
 import BarTest from './demo/bar-test.vue'
 import EditorTest from './demo/editor-test.vue'
 import TableTest from './demo/table-test.vue'
+import BaseTest from './demo/base-test.vue'
 // import PictureTest from './demo/picture-test.vue';
 
 export default {
@@ -38,7 +40,8 @@ export default {
     FormTest,
     BarTest,
     EditorTest,
-    TableTest
+    TableTest,
+    BaseTest
   },
   setup() {
   }

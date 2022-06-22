@@ -12,10 +12,11 @@
       <i :class="['iconfont', `${selectIcon}`, 'ho-select_icon']"/>
     </div>
     <div class="ho-select_option" v-show="isVisible">
-      <span v-for="item in options" :key="item[fileds.value]"
-        :class="['ho-select_option_label', {'is-active':item[fileds.value]===activeOption}]"
-        @click="choose(item[fileds.label], item[fileds.value])">
-        {{ item[fileds.label] }}
+      <span v-for="item in options" :key="fileds ? item[fileds.value] : item"
+        :class="['ho-select_option_label',
+        {'is-active': fileds ? item[fileds?.value] === activeOption : item === activeOption }]"
+        @click="choose(item[fileds?.label] || item, item[fileds?.value] || item)">
+        {{ fileds ? item[fileds.label] : item }}
       </span>
     </div>
   </div>
@@ -53,24 +54,28 @@ export default {
       // 用于提取出label和value对应的字段名
       // :fileds="{label:'name', value:'value'}"
       type: Object,
-      default: () => ({
-        label: 'label',
-        value: 'value'
-      })
+      default: () => null
     }
   },
   setup(props, { emit }) {
     // 用指令v-click-outside-hide控制了显示隐藏，页面中无需再维护
     const isVisible = ref(false)
-    const activeOption = ref(props.modelValue)
+    const activeOption = computed({
+      get() {
+        return props.modelValue
+      },
+      set() {
+
+      }
+    })
     const activeLabel = computed(
       {
         get() {
           if (props.modelValue) {
             for (let i = 0; i < props.options.length; i += 1) {
-              const item = props.options[i]
-              if (item[props.fileds.value] === props.modelValue) {
-                return item[props.fileds.label]
+              const value = props.fileds ? props.options[i][props.fileds.value] : props.options[i]
+              if (value === props.modelValue) {
+                return props.fileds ? props.options[i][props.fileds.label] : props.options[i]
               }
             }
             return ''
@@ -122,6 +127,7 @@ export default {
 }
 </script>
 <style scoped lang="less">
+@import url('../../assets/css/scrollbar.css');
 .ho-select {
   position: relative;
   :deep(.ho-input_inner) {

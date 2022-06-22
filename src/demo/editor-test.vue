@@ -14,6 +14,13 @@
       clearable
       width="200px"
       :fileds="{label:'name', value:'value'}" />
+    <ho-select
+      style="margin-top:10px"
+      placeholder="请选择名称"
+      v-model="test2"
+      :options="options2"
+      clearable
+      width="200px" />
   </div>
 </template>
 <script>
@@ -30,13 +37,22 @@ export default defineComponent({
       { name: 'rrrr', value: '6' },
       { name: 'rrrr', value: '8' }
     ]
+    const options2 = [
+      'pinggu', 'wwwww', 'sjxci', 'hhhhh', 'anem', 'oobu', 'lllkiy'
+    ]
     const user = ref(null)
+    const test2 = ref(undefined)
     watch(user, (val) => {
       console.log('user-value', val)
     })
+    watch(test2, (val) => {
+      console.log('test2-value', val)
+    })
     return {
       options,
-      user
+      user,
+      options2,
+      test2
     }
   }
 });

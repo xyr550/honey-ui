@@ -20,6 +20,7 @@
       </ho-footer>
     </ho-container>
 
+    <!-- 这里把所有ho-x-box替换为ho-container也可以 -->
     <ho-v-box class="test-box" size="1">
       <ho-header style="background:#ECF5FF">
         header
@@ -30,7 +31,7 @@
         </ho-aside>
         <ho-v-box size="1" style="background:#F0FFF0">
           <ho-main> main </ho-main>
-            <ho-footer style="background:#FFF0F5"> footer </ho-footer>
+          <ho-footer style="background:#FFF0F5"> footer </ho-footer>
         </ho-v-box>
       </ho-h-box>
     </ho-v-box>

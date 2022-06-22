@@ -12,9 +12,12 @@
       <i :class="['iconfont', `${selectIcon}`, 'ho-select_icon']"/>
     </div>
     <div class="ho-select_option" v-show="isVisible">
-      <span v-for="item in options" :key="fileds ? item[fileds.value] : item"
-        :class="['ho-select_option_label',
-        {'is-active': fileds ? item[fileds?.value] === activeOption : item === activeOption }]"
+      <span
+        v-for="item in options"
+        :key="fileds ? item[fileds.value] : item"
+        :class="['ho-select_option_label',{
+          'is-active': fileds ? item[fileds?.value] === activeOption : item === activeOption
+        }]"
         @click="choose(item[fileds?.label] || item, item[fileds?.value] || item)">
         {{ fileds ? item[fileds.label] : item }}
       </span>

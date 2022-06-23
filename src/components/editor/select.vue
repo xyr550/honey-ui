@@ -1,5 +1,5 @@
 <template>
-  <div class="ho-select" :style="styleVar" v-click-outside-hide>
+  <div class="ho-select" :style="styleVar" v-click-outside-hide="false">
     <div class="ho-select_box"
       @mouseenter="mouseenter"
       @mouseleave="mouseleave">
@@ -16,9 +16,13 @@
         v-for="item in options"
         :key="fileds ? item[fileds.value] : item"
         :class="['ho-select_option_label',{
-          'is-active': fileds ? item[fileds?.value] === activeOption : item === activeOption
+          'is-active': isActive(item)
         }]"
         @click="choose(item[fileds?.label] || item, item[fileds?.value] || item)">
+        <span  v-if="multiple"
+          :class="['ho-select_checkbox',
+          {'is-checked': activeOption?.includes(item[fileds?.value] || item)}]">
+        </span>
         {{ fileds ? item[fileds.label] : item }}
       </span>
     </div>
@@ -47,11 +51,15 @@ export default {
       default: false
     },
     modelValue: {
-      default: null
+      default: ''
     },
     options: {
       type: Array,
       default: () => []
+    },
+    multiple: {
+      type: Boolean,
+      default: false
     },
     fileds: {
       // 用于提取出label和value对应的字段名
@@ -74,7 +82,7 @@ export default {
     const activeLabel = computed(
       {
         get() {
-          if (props.modelValue) {
+          if (props.modelValue && !props.multiple) {
             for (let i = 0; i < props.options.length; i += 1) {
               const value = props.fileds ? props.options[i][props.fileds.value] : props.options[i]
               if (value === props.modelValue) {
@@ -82,6 +90,16 @@ export default {
               }
             }
             return ''
+          } if (props.multiple) {
+            let checkedLabels = []
+            if (!props.fileds) {
+              checkedLabels = props.options.filter((item) => props.modelValue.includes(item))
+            } else {
+              checkedLabels = props.options.filter(
+                (item) => props.modelValue.includes(item[props.fileds.value])
+              ).map((x) => x[props.fileds.label])
+            }
+            return checkedLabels.join()
           }
           return ''
         },
@@ -89,6 +107,16 @@ export default {
         }
       }
     )
+    const isActive = (item) => {
+      if (props.multiple) {
+        return props.fileds
+          ? activeOption.value.includes(item[props.fileds?.value])
+          : activeOption.value.includes(item)
+      }
+      return props.fileds
+        ? item[props.fileds?.value] === activeOption.value
+        : item === activeOption.value
+    }
     const hovering = ref(false)
     const styleVar = computed(() => (
       {
@@ -99,9 +127,17 @@ export default {
     ))
     const selectIcon = computed(() => (isVisible.value ? 'ho-icon-arrow-up-bold' : 'ho-icon-arrow-down'))
     const choose = (labelVal, val) => {
-      activeOption.value = val
-      activeLabel.value = labelVal
-      emit('update:modelValue', val)
+      if (props.multiple) {
+        const index = activeOption.value.indexOf(val)
+        if (index >= 0) activeOption.value.splice(index, 1)
+        else activeOption.value.push(val)
+        activeLabel.value = activeOption.value.join()
+        emit('update:modelValue', activeOption.value)
+      } else {
+        activeOption.value = val
+        activeLabel.value = labelVal
+        emit('update:modelValue', val)
+      }
     }
     const mouseenter = () => {
       hovering.value = true
@@ -110,9 +146,14 @@ export default {
       hovering.value = false
     }
     const clear = () => {
-      activeOption.value = ''
       activeLabel.value = ''
-      emit('update:modelValue', '')
+      if (props.multiple) {
+        activeOption.value.splice(0, activeOption.value.length)
+        emit('update:modelValue', activeOption.value)
+      } else {
+        activeOption.value = ''
+        emit('update:modelValue', '')
+      }
     }
     return {
       isVisible,
@@ -124,7 +165,8 @@ export default {
       mouseenter,
       mouseleave,
       choose,
-      clear
+      clear,
+      isActive
     }
   }
 }
@@ -188,9 +230,24 @@ export default {
       color: #409eff;
       background-color: #eeeeee;
     }
+    .ho-select_checkbox {
+      display: inline-block;
+      width: 5px;
+      height: 10px;
+      transform: rotate(45deg);
+      // border-right: 2px solid rgb(39, 122, 254);
+      // border-bottom: 2px solid rgb(39, 122, 254);
+      top: 10px;
+      margin-right: 15px;
+      left: 3px;
+    }
   }
   .is-active {
     color: rgba(39,122,254);
+  }
+  .is-checked {
+    border-right: 2px solid rgb(39, 122, 254);
+    border-bottom: 2px solid rgb(39, 122, 254);
   }
 }
 </style>

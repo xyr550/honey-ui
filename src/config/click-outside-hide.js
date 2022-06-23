@@ -8,8 +8,9 @@ const clickOutsideHide = (app) => {
       const vm = binding.instance
       const handler = (e) => {
         if (el.contains(e.target)) {
-          // 如果点击的文本框
-          vm.isVisible = !vm.isVisible
+          // 如果点击的文本框,多选时，仅点击外侧区域下拉才可以消失
+          if (vm.multiple) vm.isVisible = true
+          else vm.isVisible = !vm.isVisible
         } else if (vm.isVisible) {
           vm.isVisible = false
         }
